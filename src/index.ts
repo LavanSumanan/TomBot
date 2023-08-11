@@ -23,7 +23,7 @@ const client = new Client({
 });
 
 client.once('ready', async (client) => {
-  client.user.setAvatar('../avatar.png');
+  client.user.setAvatar('./avatar.png');
   console.log('Thomas is Fooling!');
   await deployCommands({ guildId: config.GUILD_ID });
   // await sendGroupTally(client);
