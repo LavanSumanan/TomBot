@@ -4,12 +4,7 @@ import { commands } from './commands';
 import { buttons } from './buttons';
 import { config } from './config';
 import mongoose from 'mongoose';
-import {
-  sendGroupTally,
-  sendMessage,
-  editTotalTallyMessage,
-} from './helpers/messages';
-import db from './db';
+import { sendGroupTally, sendMessage } from './helpers/messages';
 
 // MongoDB setup
 (async () => {
@@ -46,10 +41,6 @@ client.on('interactionCreate', async (interaction) => {
       await buttons[customId as keyof typeof buttons].execute(interaction);
     }
   }
-
-  const totalTally = await db.getTotalTally();
-  if (totalTally !== 'error')
-    editTotalTallyMessage(interaction.client, totalTally);
 });
 
 client.login(config.DISCORD_TOKEN);

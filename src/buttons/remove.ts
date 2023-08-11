@@ -9,6 +9,7 @@ import userIds from '../constants/userIds';
 import channelIds from '../constants/channelIds';
 import messageIds from '../constants/messageIds';
 import buttonIds from '../constants/buttonIds';
+import { editTotalTallyMessage } from '../helpers/messages';
 
 export const removeButton = new ButtonBuilder()
   .setCustomId(buttonIds.REMOVE)
@@ -44,6 +45,10 @@ export async function execute(interaction: ButtonInteraction) {
   jarMessage.edit({
     content: `The group tally is currently ${tally}`,
   });
+
+  const totalTally = await db.getTotalTally();
+  if (totalTally !== 'error')
+    editTotalTallyMessage(interaction.client, totalTally);
 
   return interaction.reply({ content: 'Removed!', ephemeral: true });
 }

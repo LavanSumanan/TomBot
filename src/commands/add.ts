@@ -1,5 +1,6 @@
 import { CommandInteraction, SlashCommandBuilder } from 'discord.js';
 import db from '../db';
+import { editTotalTallyMessage } from '../helpers/messages';
 
 export const data = new SlashCommandBuilder()
   .setName('add')
@@ -18,6 +19,10 @@ export async function execute(interaction: CommandInteraction) {
       content: "ERROR! Adding failed! That's pretty foolish of me 😞",
       ephemeral: true,
     });
+
+  const totalTally = await db.getTotalTally();
+  if (totalTally !== 'error')
+    editTotalTallyMessage(interaction.client, totalTally);
 
   return interaction.reply({
     content: `Added! ${user.username}'s tally is now ${tally}`,
