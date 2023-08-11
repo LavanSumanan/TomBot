@@ -24,6 +24,7 @@
     "mongoose": "^7.4.2"
   },
   "devDependencies": {
+    "@flydotio/dockerfile": "^0.4.3",
     "@types/node": "^20.4.9",
     "eslint": "^8.46.0",
     "ts-node": "^10.9.1",
