@@ -20,7 +20,8 @@
   "homepage": "https://github.com/LavanSumanan/TomBot#readme",
   "dependencies": {
     "discord.js": "^14.12.1",
-    "dotenv": "^16.3.1"
+    "dotenv": "^16.3.1",
+    "mongoose": "^7.4.2"
   },
   "devDependencies": {
     "@types/node": "^20.4.9",
