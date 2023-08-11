@@ -8,9 +8,10 @@ import db from '../db';
 import userIds from '../constants/userIds';
 import channelIds from '../constants/channelIds';
 import messageIds from '../constants/messageIds';
+import buttonIds from '../constants/buttonIds';
 
 export const removeButton = new ButtonBuilder()
-  .setCustomId('remove')
+  .setCustomId(buttonIds.REMOVE)
   .setLabel('Remove')
   .setStyle(ButtonStyle.Danger);
 
