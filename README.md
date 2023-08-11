@@ -1,2 +1,2 @@
 # TomBot
-A discord bot for keeping track of tom foolery
+A discord bot for tracking tomfoolery
