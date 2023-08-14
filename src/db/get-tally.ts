@@ -5,7 +5,7 @@ export async function getTally(userId: String) {
 
   try {
     userFooljar = await fooljars.findOne({ userId });
-    return userFooljar ? userFooljar.tally : 'error';
+    return userFooljar ? userFooljar.tally : 0;
   } catch (e) {
     console.error(e);
     return 'error';
