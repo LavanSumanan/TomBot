@@ -25,7 +25,7 @@ export async function execute(
   const reason =
     interaction.options.getString('reason') ?? 'They just a fool tbh';
 
-  const adder = interaction.member?.user.username;
+  const adder = interaction.member;
 
   const tally = await db.addTally(user.id);
 
@@ -43,7 +43,7 @@ export async function execute(
     channelIds.GENERAL
   ) as TextChannel;
   generalChannel.send(
-    `${adder} added one tally to ${user.username}'s jar for the following reason:\n> ${reason}\n${user.username}'s tally is now ${tally}`
+    `${adder} added one tally to ${user}'s jar for the following reason:\n> ${reason}\n${user.username}'s tally is now ${tally}`
   );
 
   return interaction.reply({
