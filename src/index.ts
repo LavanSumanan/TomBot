@@ -1,4 +1,4 @@
-import { Client } from 'discord.js';
+import { CacheType, ChatInputCommandInteraction, Client } from 'discord.js';
 import { deployCommands } from './deploy-commands';
 import { commands } from './commands';
 import { buttons } from './buttons';
@@ -18,7 +18,7 @@ const client = new Client({
 });
 
 client.once('ready', async (client) => {
-  client.user.setAvatar('./avatar.png');
+  // client.user.setAvatar('./avatar.png');
   console.log('Thomas is Fooling!');
   await deployCommands({ guildId: config.GUILD_ID });
   // await sendGroupTally(client);
@@ -33,7 +33,9 @@ client.on('interactionCreate', async (interaction) => {
   if (interaction.isCommand()) {
     const { commandName } = interaction;
     if (commands[commandName as keyof typeof commands]) {
-      await commands[commandName as keyof typeof commands].execute(interaction);
+      await commands[commandName as keyof typeof commands].execute(
+        interaction as ChatInputCommandInteraction<CacheType>
+      );
     }
   } else if (interaction.isButton()) {
     const { customId } = interaction;
