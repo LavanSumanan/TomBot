@@ -18,6 +18,7 @@ export const addButton = new ButtonBuilder()
 
 export async function execute(interaction: ButtonInteraction) {
   const client = interaction.client;
+  const adder = interaction.member;
 
   const tally = await db.addTally(userIds.GROUP);
 
@@ -47,8 +48,16 @@ export async function execute(interaction: ButtonInteraction) {
   });
 
   const totalTally = await db.getTotalTally();
-  if (totalTally !== 'error')
-    editTotalTallyMessage(interaction.client, totalTally);
+  if (totalTally === 'error') return;
+
+  editTotalTallyMessage(interaction.client, totalTally);
+
+  const generalChannel = interaction.client.channels.cache.get(
+    channelIds.GENERAL
+  ) as TextChannel;
+  generalChannel.send(
+    `${adder} added one tally to the group's jar\nThe group's tally is now ${tally}`
+  );
 
   return interaction.reply({ content: 'Added!', ephemeral: true });
 }
