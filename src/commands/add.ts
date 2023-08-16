@@ -10,7 +10,7 @@ import channelIds from '../constants/channelIds';
 
 export const data = new SlashCommandBuilder()
   .setName('add')
-  .setDescription("Add a tally to someone's fool jar!")
+  .setDescription("Add a coin to someone's tomfoolery jar!")
   .addUserOption((option) =>
     option.setName('fool').setDescription('Pick the fool').setRequired(true)
   )
@@ -43,7 +43,7 @@ export async function execute(
     channelIds.GENERAL
   ) as TextChannel;
   generalChannel.send(
-    `${adder} added one tally to ${user}'s jar for the following reason:\n> ${reason}\n${user.username}'s tally is now ${tally}`
+    `${adder} added one coin to ${user}'s tomfoolery jar for the following reason:\n> ${reason}\n${user.username}'s jar now has ${tally} coins`
   );
 
   return interaction.reply({

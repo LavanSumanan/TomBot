@@ -44,7 +44,7 @@ export async function execute(interaction: ButtonInteraction) {
   }
 
   jarMessage.edit({
-    content: `The group tally is currently ${tally}`,
+    content: `Total coins in the group's tomfoolery jar: ${tally}`,
   });
 
   const totalTally = await db.getTotalTally();
@@ -56,7 +56,7 @@ export async function execute(interaction: ButtonInteraction) {
     channelIds.GENERAL
   ) as TextChannel;
   generalChannel.send(
-    `${adder} added one tally to the group's jar\nThe group's tally is now ${tally}`
+    `${adder} added one coin to the group's jar\nThe group's total is now ${tally}`
   );
 
   return interaction.reply({ content: 'Added!', ephemeral: true });

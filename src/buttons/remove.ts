@@ -43,7 +43,7 @@ export async function execute(interaction: ButtonInteraction) {
   }
 
   jarMessage.edit({
-    content: `The group tally is currently ${tally}`,
+    content: `Total coins in the group's tomfoolery jar: ${tally}`,
   });
 
   const totalTally = await db.getTotalTally();

@@ -3,7 +3,7 @@ import db from '../db';
 
 export const data = new SlashCommandBuilder()
   .setName('get')
-  .setDescription("Get someone's fool jar tally!")
+  .setDescription("Get the number of coins in someone's tomfoolery jar!")
   .addUserOption((option) =>
     option.setName('fool').setDescription('Pick the fool').setRequired(true)
   );
@@ -15,11 +15,11 @@ export async function execute(interaction: CommandInteraction) {
 
   if (tally === 'error')
     return interaction.reply({
-      content: "ERROR! Getting tally failed! That's pretty foolish of me 😞",
+      content: "ERROR! Getting coin count failed! That's pretty foolish of me 😞",
       ephemeral: true,
     });
 
   return interaction.reply({
-    content: `${user.username}'s tomfoolery jar currently has a tally of ${tally}. What a buffoon.`,
+    content: `${user.username}'s tomfoolery jar currently has ${tally} coins. What a buffoon.`,
   });
 }

@@ -4,7 +4,7 @@ import { editTotalTallyMessage } from '../helpers/messages';
 
 export const data = new SlashCommandBuilder()
   .setName('remove')
-  .setDescription("Remove a tally from someone's fool jar!")
+  .setDescription("Remove a coin from someone's tomfoolery jar!")
   .addUserOption((option) =>
     option.setName('fool').setDescription('Pick the fool').setRequired(true)
   );
@@ -25,7 +25,7 @@ export async function execute(interaction: CommandInteraction) {
     editTotalTallyMessage(interaction.client, totalTally);
 
   return interaction.reply({
-    content: `Removed! ${user.username}'s tally is now ${tally}`,
+    content: `Removed! ${user.username}'s jar now has ${tally} coins`,
     ephemeral: true,
   });
 }
