@@ -1,6 +1,11 @@
 import mongoose from 'mongoose';
 
-const fooljarSchema = new mongoose.Schema({
+export interface Fooljar {
+  userId: string;
+  tally: number;
+}
+
+const fooljarSchema = new mongoose.Schema<Fooljar>({
   userId: {
     type: String,
     required: true,
@@ -11,6 +16,6 @@ const fooljarSchema = new mongoose.Schema({
   },
 });
 
-const fooljarModel = mongoose.model('fooljars', fooljarSchema);
+const fooljarModel = mongoose.model<Fooljar>('fooljars', fooljarSchema);
 
 export default fooljarModel;

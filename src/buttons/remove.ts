@@ -9,7 +9,11 @@ import userIds from '../constants/userIds';
 import channelIds from '../constants/channelIds';
 import messageIds from '../constants/messageIds';
 import buttonIds from '../constants/buttonIds';
-import { editTotalTallyMessage } from '../helpers/messages';
+import {
+  editLeaderboardMessage,
+  editTotalTallyMessage,
+} from '../helpers/messages';
+import { Fooljar } from '../models/fooljars';
 
 export const removeButton = new ButtonBuilder()
   .setCustomId(buttonIds.REMOVE)
@@ -49,6 +53,11 @@ export async function execute(interaction: ButtonInteraction) {
   const totalTally = await db.getTotalTally();
   if (totalTally !== 'error')
     editTotalTallyMessage(interaction.client, totalTally);
+
+  editLeaderboardMessage(
+    interaction.client,
+    (await db.getLeaderboard()) as unknown as [Fooljar]
+  );
 
   return interaction.reply({ content: 'Removed!', ephemeral: true });
 }

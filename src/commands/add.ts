@@ -5,8 +5,12 @@ import {
   TextChannel,
 } from 'discord.js';
 import db from '../db';
-import { editTotalTallyMessage } from '../helpers/messages';
+import {
+  editLeaderboardMessage,
+  editTotalTallyMessage,
+} from '../helpers/messages';
 import channelIds from '../constants/channelIds';
+import { Fooljar } from '../models/fooljars';
 
 export const data = new SlashCommandBuilder()
   .setName('add')
@@ -38,6 +42,11 @@ export async function execute(
   const totalTally = await db.getTotalTally();
   if (totalTally !== 'error')
     editTotalTallyMessage(interaction.client, totalTally);
+
+  editLeaderboardMessage(
+    interaction.client,
+    (await db.getLeaderboard()) as unknown as [Fooljar]
+  );
 
   const generalChannel = interaction.client.channels.cache.get(
     channelIds.GENERAL

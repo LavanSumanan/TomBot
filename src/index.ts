@@ -4,7 +4,6 @@ import { commands } from './commands';
 import { buttons } from './buttons';
 import { config } from './config';
 import mongoose from 'mongoose';
-import { sendGroupTally, sendMessage } from './helpers/messages';
 
 // MongoDB setup
 (async () => {
@@ -21,7 +20,6 @@ client.once('ready', async (client) => {
   // client.user.setAvatar('./avatar.png');
   console.log('Thomas is Fooling!');
   await deployCommands({ guildId: config.GUILD_ID });
-  // await sendGroupTally(client);
   // await sendMessage({ client, channelId: channelIds.JAR, message: 'doot' });
 });
 

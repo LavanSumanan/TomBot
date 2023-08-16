@@ -9,7 +9,11 @@ import userIds from '../constants/userIds';
 import channelIds from '../constants/channelIds';
 import messageIds from '../constants/messageIds';
 import buttonIds from '../constants/buttonIds';
-import { editTotalTallyMessage } from '../helpers/messages';
+import {
+  editLeaderboardMessage,
+  editTotalTallyMessage,
+} from '../helpers/messages';
+import { Fooljar } from '../models/fooljars';
 
 export const addButton = new ButtonBuilder()
   .setCustomId(buttonIds.ADD)
@@ -51,6 +55,11 @@ export async function execute(interaction: ButtonInteraction) {
   if (totalTally === 'error') return;
 
   editTotalTallyMessage(interaction.client, totalTally);
+
+  editLeaderboardMessage(
+    interaction.client,
+    (await db.getLeaderboard()) as unknown as [Fooljar]
+  );
 
   const generalChannel = interaction.client.channels.cache.get(
     channelIds.GENERAL
