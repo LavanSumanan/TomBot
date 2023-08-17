@@ -61,10 +61,10 @@ export async function execute(interaction: ButtonInteraction) {
     (await db.getLeaderboard()) as unknown as [Fooljar]
   );
 
-  const generalChannel = interaction.client.channels.cache.get(
-    channelIds.GENERAL
+  const fooleryChannel = interaction.client.channels.cache.get(
+    channelIds.FOOLERY
   ) as TextChannel;
-  generalChannel.send(
+  fooleryChannel.send(
     `${adder} added one coin to the group's jar\nThe group's total is now ${tally}`
   );
 
